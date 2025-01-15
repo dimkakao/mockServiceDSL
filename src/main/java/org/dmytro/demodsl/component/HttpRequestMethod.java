@@ -1,6 +1,6 @@
 package org.dmytro.demodsl.component;
 
-public enum HttpRequestType {
+public enum HttpRequestMethod {
     GET,
     POST,
     PUT,

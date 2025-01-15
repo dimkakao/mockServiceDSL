@@ -19,43 +19,37 @@ public class MockServerService {
     private final MockEndpointRepository repository;
     private final MockEndpointRequestResolver mockEndpointRequestResolver;
 
-    {
-        WireMock.configureFor("localhost", 8081);
-
-        WireMock.stubFor(WireMock.get(urlEqualTo("/your-endpoint"))
-                .willReturn(aResponse()
-                        .withStatus(200)
-                        .withBody("Mock response from WireMock")));
-
-        WireMock.stubFor(WireMock.post(urlEqualTo("/your-endpoint"))
-                .withRequestBody(equalToJson("{\"key\": \"value\", \"anotherKey\": \"anotherValue\"}"))
-                .willReturn(aResponse()
-                        .withStatus(200)
-                        .withBody("{\"mock\": \"response\"}")
-                        .withHeader("Content-Type", "application/json"))
-        );
-
-        WireMock.stubFor(WireMock.post(urlEqualTo("/your-endpoint"))
-                .withRequestBody(equalToJson("{\"key\": \"value\", \"anotherKey\": \"anotherValue\"}"))
-                .willReturn(aResponse()
-                        .withStatus(200)
-                        .withBody("{\"mock\": \"response йоу\"}")
-                        .withHeader("Content-Type", "application/json"))
-        );
-
-        WireMock.stubFor(
-                WireMock.post(
-                                urlEqualTo("/your-endpoint")
-                        )
-                        .withRequestBody(equalToJson("{\"key\": \"value\", \"anotherKey\": \"anotherValue\"}"))
-                        .willReturn(aResponse()
-                                .withStatus(200)
-                                .withBody("{\"mock\": \"response йоу\"}")
-                                .withHeader("Content-Type", "application/json"))
-        );
-
-
-    }
+//        WireMock.stubFor(WireMock.get(urlEqualTo("/your-endpoint"))
+//                .willReturn(aResponse()
+//                        .withStatus(200)
+//                        .withBody("Mock response from WireMock")));
+//
+//        WireMock.stubFor(WireMock.post(urlEqualTo("/your-endpoint"))
+//                .withRequestBody(equalToJson("{\"key\": \"value\", \"anotherKey\": \"anotherValue\"}"))
+//                .willReturn(aResponse()
+//                        .withStatus(200)
+//                        .withBody("{\"mock\": \"response\"}")
+//                        .withHeader("Content-Type", "application/json"))
+//        );
+//
+//        WireMock.stubFor(WireMock.post(urlEqualTo("/your-endpoint"))
+//                .withRequestBody(equalToJson("{\"key\": \"value\", \"anotherKey\": \"anotherValue\"}"))
+//                .willReturn(aResponse()
+//                        .withStatus(200)
+//                        .withBody("{\"mock\": \"response йоу\"}")
+//                        .withHeader("Content-Type", "application/json"))
+//        );
+//
+//        WireMock.stubFor(
+//                WireMock.post(
+//                                urlEqualTo("/your-endpoint")
+//                        )
+//                        .withRequestBody(equalToJson("{\"key\": \"value\", \"anotherKey\": \"anotherValue\"}"))
+//                        .willReturn(aResponse()
+//                                .withStatus(200)
+//                                .withBody("{\"mock\": \"response йоу\"}")
+//                                .withHeader("Content-Type", "application/json"))
+//        );
 
     public List<MockEndpoint> getAllEndpoints() {
         return repository.findAll();

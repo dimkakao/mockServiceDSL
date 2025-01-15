@@ -14,27 +14,19 @@ import org.springframework.http.HttpStatus;
 @Getter
 @Setter
 public class MockEndpointRequest {
-
-    String description;
-
     @NotBlank
-    String name;
-
+    private String name;
+    private String description;
     @NotNull
-    HttpRequestType method;
-
+    private HttpRequestMethod method;
     @NotBlank
-    String path;
-
-    String response;
-
+    private String path;
+    private String response;
     @JsonDeserialize(using = HttpStatusDeserializer.class)
-    HttpStatus statusCode;
-
+    private HttpStatus statusCode;
     @Min(1)
     @Max(100)
-    Long priority;
-
+    private Long priority;
     @NotNull
-    RequestBodyValidationRule requestBodyValidationRule;
+    private RequestBodyValidationRule requestBodyValidationRule;
 }
