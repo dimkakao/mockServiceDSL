@@ -86,6 +86,46 @@
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 
+
+
+
+			<!-- DJL API -->
+			<dependency>
+				<groupId>ai.djl</groupId>
+				<artifactId>api</artifactId>
+				<version>0.22.1</version>
+			</dependency>
+
+			<!-- PyTorch Backend -->
+			<dependency>
+				<groupId>ai.djl.pytorch</groupId>
+				<artifactId>pytorch-engine</artifactId>
+				<version>0.22.1</version>
+			</dependency>
+
+			<!-- Hugging Face NLP -->
+			<dependency>
+				<groupId>ai.djl.huggingface</groupId>
+				<artifactId>tokenizers</artifactId>
+				<version>0.22.1</version>
+			</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.graalvm.truffle/truffle-api -->
+		<dependency>
+			<groupId>org.graalvm.truffle</groupId>
+			<artifactId>truffle-api</artifactId>
+			<version>24.1.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.antlr/antlr4-runtime -->
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4-runtime</artifactId>
+			<version>4.13.2</version>
+		</dependency>
+
+
+
 	</dependencies>
 
 	<build>

@@ -24,14 +24,12 @@ public class EqualsJsonRequestBodyValidationRule extends RequestBodyValidationRu
 //    }
 
 //    private boolean equalsJson(String actualJson, String expectedJson) {
-//        // Логіка для порівняння JSON. Можна використати бібліотеки, такі як Jackson або org.json.
 //        try {
 //            ObjectMapper objectMapper = new ObjectMapper();
 //            JsonNode actualNode = objectMapper.readTree(actualJson);
 //            JsonNode expectedNode = objectMapper.readTree(expectedJson);
 //            return actualNode.equals(expectedNode);
 //        } catch (Exception e) {
-//            // У разі помилки парсингу вважати, що JSON не збігається
 //            return false;
 //        }
 //    }

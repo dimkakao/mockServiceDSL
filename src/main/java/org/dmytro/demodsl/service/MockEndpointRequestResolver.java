@@ -6,7 +6,7 @@ import com.github.tomakehurst.wiremock.matching.ContentPattern;
 import com.github.tomakehurst.wiremock.matching.StringValuePattern;
 import com.github.tomakehurst.wiremock.matching.UrlPattern;
 import org.dmytro.demodsl.component.HttpRequestMethod;
-import org.dmytro.demodsl.component.MockEndpointRequest;
+import org.dmytro.demodsl.component.MockEndpointRequestDefinition;
 import org.dmytro.demodsl.validation_condition.JsonValidationCondition;
 import org.dmytro.demodsl.validation_condition.ValidationCondition;
 import org.dmytro.demodsl.validation_rule.*;
@@ -36,7 +36,7 @@ public class MockEndpointRequestResolver {
 //        );
 //    }
 
-    public void stubMockEndpointRequest(MockEndpointRequest request) {
+    public void stubMockEndpointRequest(MockEndpointRequestDefinition request) {
         RequestBodyValidationRule requestBodyValidationRule = request.getRequestBodyValidationRule();
         ContentPattern<?> requestBodyPattern = processValidationCondition(requestBodyValidationRule);
 
@@ -52,10 +52,11 @@ public class MockEndpointRequestResolver {
                                 .withStatus(request.getStatusCode().value())
                                 .withBody(request.getResponse())
                                 .withHeader("Content-Type", "application/json")
-                ));
+                )
+        );
     }
 
-    public UrlPattern resolveUrlPattern(MockEndpointRequest request) {
+    public UrlPattern resolveUrlPattern(MockEndpointRequestDefinition request) {
         String path = request.getPath();
         return WireMock.urlPathEqualTo(path);
     }

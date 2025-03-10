@@ -13,12 +13,10 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @Setter
-public class MockEndpointRequest {
-    @NotBlank
-    private String name;
-    private String description;
+public class MockEndpointRequestDefinition {
     @NotNull
     private HttpRequestMethod method;
+
     @NotBlank
     private String path;
     private String response;

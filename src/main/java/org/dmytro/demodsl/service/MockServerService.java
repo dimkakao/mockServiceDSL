@@ -1,16 +1,13 @@
 package org.dmytro.demodsl.service;
 
-import com.github.tomakehurst.wiremock.client.WireMock;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.dmytro.demodsl.component.MockEndpointRequest;
+import org.dmytro.demodsl.component.MockEndpointRequestDefinition;
 import org.dmytro.demodsl.entity.MockEndpoint;
 import org.dmytro.demodsl.repository.MockEndpointRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 @Service
 @RequiredArgsConstructor
@@ -66,9 +63,9 @@ public class MockServerService {
         repository.save(endpoint);
     }
 
-    public void defineEndpoint(@Valid MockEndpointRequest mockEndpointRequest) {
+    public void defineEndpoint(@Valid MockEndpointRequestDefinition mockEndpointRequestDefinition) {
 
-        mockEndpointRequestResolver.stubMockEndpointRequest(mockEndpointRequest);
+        mockEndpointRequestResolver.stubMockEndpointRequest(mockEndpointRequestDefinition);
 //        WireMock.stubFor(WireMock.post(urlEqualTo("/your-endpoint"))
 //                .withRequestBody(equalToJson("{\"key\": \"value\", \"anotherKey\": \"anotherValue\"}"))
 //                .willReturn(aResponse()
