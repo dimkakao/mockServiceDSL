@@ -2,7 +2,7 @@ package org.dmytro.demodsl.service;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.dmytro.demodsl.component.MockEndpointRequestDefinition;
+import org.dmytro.demodsl.entity.MockEndpointRequestDefinition;
 import org.dmytro.demodsl.entity.MockEndpoint;
 import org.dmytro.demodsl.repository.MockEndpointRepository;
 import org.springframework.stereotype.Service;

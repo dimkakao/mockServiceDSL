@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.dmytro.demodsl.validation_condition.ValidationCondition;
+import org.dmytro.demodsl.custom_emun.ValidationCondition;
 
 @Getter
 @Setter

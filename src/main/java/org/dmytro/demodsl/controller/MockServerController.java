@@ -4,7 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.dmytro.demodsl.component.MockEndpointRequestDefinition;
+import org.dmytro.demodsl.entity.MockEndpointRequestDefinition;
 import org.dmytro.demodsl.service.MockServerService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;

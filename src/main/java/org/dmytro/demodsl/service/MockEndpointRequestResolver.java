@@ -5,10 +5,10 @@ import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.matching.ContentPattern;
 import com.github.tomakehurst.wiremock.matching.StringValuePattern;
 import com.github.tomakehurst.wiremock.matching.UrlPattern;
-import org.dmytro.demodsl.component.HttpRequestMethod;
-import org.dmytro.demodsl.component.MockEndpointRequestDefinition;
-import org.dmytro.demodsl.validation_condition.JsonValidationCondition;
-import org.dmytro.demodsl.validation_condition.ValidationCondition;
+import org.dmytro.demodsl.custom_emun.HttpRequestMethod;
+import org.dmytro.demodsl.entity.MockEndpointRequestDefinition;
+import org.dmytro.demodsl.custom_emun.JsonValidationCondition;
+import org.dmytro.demodsl.custom_emun.ValidationCondition;
 import org.dmytro.demodsl.validation_rule.*;
 import org.springframework.stereotype.Service;
 
@@ -37,23 +37,23 @@ public class MockEndpointRequestResolver {
 //    }
 
     public void stubMockEndpointRequest(MockEndpointRequestDefinition request) {
-        RequestBodyValidationRule requestBodyValidationRule = request.getRequestBodyValidationRule();
-        ContentPattern<?> requestBodyPattern = processValidationCondition(requestBodyValidationRule);
-
-        HttpRequestMethod method = request.getMethod();
-        WireMock.stubFor(
-                withHttpMethodForUrlPattern(
-                        method,
-                        resolveUrlPattern(request)
-                )
-                .withRequestBody(requestBodyPattern)
-                .willReturn(
-                        aResponse()
-                                .withStatus(request.getStatusCode().value())
-                                .withBody(request.getResponse())
-                                .withHeader("Content-Type", "application/json")
-                )
-        );
+//        RequestBodyValidationRule requestBodyValidationRule = request.getRequestBodyValidationRule();
+//        ContentPattern<?> requestBodyPattern = processValidationCondition(requestBodyValidationRule);
+//
+//        HttpRequestMethod method = request.getMethod();
+//        WireMock.stubFor(
+//                withHttpMethodForUrlPattern(
+//                        method,
+//                        resolveUrlPattern(request)
+//                )
+//                .withRequestBody(requestBodyPattern)
+//                .willReturn(
+//                        aResponse()
+//                                .withStatus(request.getStatusCode().value())
+//                                .withBody(request.getResponse())
+//                                .withHeader("Content-Type", "application/json")
+//                )
+//        );
     }
 
     public UrlPattern resolveUrlPattern(MockEndpointRequestDefinition request) {

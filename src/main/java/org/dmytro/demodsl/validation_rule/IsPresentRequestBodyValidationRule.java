@@ -1,7 +1,6 @@
 package org.dmytro.demodsl.validation_rule;
 
 import lombok.*;
-import org.dmytro.demodsl.validation_condition.ValidationCondition;
 
 @Getter
 @Setter

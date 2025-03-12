@@ -12,7 +12,7 @@ requestDefinition:
         setHttpMethodCommand
         setUrlMatchTypeCommand
         setPathCommand
-        setPriorityCommand
+        setPriorityCommand?
         requestQueryParams?
         requestHeaders?
         requestCookies?
@@ -27,7 +27,6 @@ responseDefinition:
     responseWebHooks?
     '}';
 
-
 directResponseDefinition:
     'ADD' 'DIRECT' 'RESPONSE' '{'
         setResponseStatusCodeCommand
@@ -37,24 +36,10 @@ directResponseDefinition:
         setValueCommand
     '}';
 
-setResponseBodyTypeCommand: 
-    'SET' 'BODY_TYPE' 'TO' responseBodyTypes;
-
-responseBodyTypes: 'JSON' | 'XML' | 'HTML' | 'TEXT' | 'BASE64';
-
-setDynamicResponseTemplatingCommand: 
-    'SET' 'DYNAMIC_RESPONSE_TEMPLATING' 'TO' BOOLEAN;
-
-setResponseStatusCodeCommand:
-    'SET' 'STATUS_CODE' 'TO' NUMBER;
-
 faultResponseDefinition:
     'ADD' 'FAULT' 'RESPONSE' '{'
         setFaultTypeCommand
     '}';
-
-setFaultTypeCommand:
-    'SET' 'FAULT_TYPE' 'TO' faultTypes;
 
 faultTypes:
       'NO_FAULT'
@@ -71,10 +56,6 @@ proxyResponseDefinition:
         setTemplatingCommand?
         setHostnameRewritingCommand?
     '}';
-
-setHostnameRewritingCommand: 'SET' 'HOSTNAME_REWRITING' 'TO' BOOLEAN;
-
-setTemplatingCommand: 'SET' 'TEMPLATING' 'TO' BOOLEAN;
 
 responseDelay:
     'DELAY' '{' (
@@ -115,9 +96,13 @@ responseHeader:
         setValueCommand
     '}';
 
-setUrlCommand: 'SET' 'URL' 'TO' STRING;
 
-timeUnits: 'MS' | 'S' | 'MIN' | 'H';
+timeUnits:
+    'MS'
+    | 'S'
+    | 'MIN'
+    | 'H'
+    ;
 
 noDelay:
     'SET' 'DELAY_TYPE' 'TO' 'NO_DELAY';
@@ -141,11 +126,9 @@ chunkedDribbleDelay:
     'SET' 'CHUNK_NUMBER' 'TO' NUMBER
     'SET' 'TOTAL_DELAY' 'TO' NUMBER;
 
-setEndpointDescriptionCommand: 'SET' 'DESCRIPTION' 'TO' STRING;
-setHttpMethodCommand: 'SET' 'METHOD' 'TO' httpMethodTypes;
-setUrlMatchTypeCommand: 'SET' 'URL_MATCH_TYPE' 'TO' urlMatchTypes;
-setPathCommand: 'SET' 'REQUEST_PATH' 'TO' STRING;
-setPriorityCommand: 'SET' 'PRIORITY' 'TO' NUMBER; //ТУТ ПЕРЕВІРКА НА НЕВІДЄМНЕ В КОДІ
+
+
+
 
 requestQueryParams:
     'QUERY_PARAMS' '{'
@@ -203,20 +186,20 @@ requestBodyRule:
     '}';
 
 requestBodyRuleCondition:
-       generalRequestBodyRuleCondition
-       | neagetedGeneralRequestBodyRuleCondition
-       ;
+    generalRequestBodyRuleCondition
+    | neagetedGeneralRequestBodyRuleCondition
+    ;
 
 neagetedGeneralRequestBodyRuleCondition:
     'NOT' '(' generalRequestBodyRuleCondition ')';
 
 generalRequestBodyRuleCondition:
-     valueOnlyRequestBodyRuleCondition
-     | equalsXmlRequestBodyRuleCondition
-     | equalsJsonRequestBodyRuleCondition
-     | isPresentRequestBodyRuleCondition
-     | matchesJsonPathRequestBodyRuleCondition
-     | matchesXPathRequestBodyRuleCondition
+    valueOnlyRequestBodyRuleCondition
+    | equalsXmlRequestBodyRuleCondition
+    | equalsJsonRequestBodyRuleCondition
+    | isPresentRequestBodyRuleCondition
+    | matchesJsonPathRequestBodyRuleCondition
+    | matchesXPathRequestBodyRuleCondition
      ;
 
 valueOnlyRequestBodyRuleCondition:
@@ -235,7 +218,7 @@ equalsJsonRequestBodyRuleCondition:
    ('SET' 'IGNORE_EXTRA_ELEMENTS' 'TO' BOOLEAN)?;
 
 isPresentRequestBodyRuleCondition:
-  setRequestBodyConditionTypeCommand isPresentConditionType;
+  setRequestBodyConditionTypeCommand isPresentConditionTypes;
 
 matchesJsonPathRequestBodyRuleCondition:
     setRequestBodyConditionTypeCommand 'MATCHES_JSON_PATH'
@@ -253,7 +236,7 @@ matchesJsonPathAndXPathRequestBodyRuleConditionInnerCondition:
         setValueCommand
     )
     |
-    (isPresentConditionType);
+    (isPresentConditionTypes);
 
 negatedMatchesJsonPathAndXPathRequestBodyRuleConditionInnerCondition:
     'NOT' '('
@@ -267,19 +250,12 @@ negatedMatchesJsonPathAndXPathRequestBodyRuleConditionInnerCondition:
 
 
 
-setNameCommand: 'SET' 'NAME' 'TO' STRING;
-setValueCommand: 'SET' 'VALUE' 'TO' (STRING | NUMBER);
 
-
-setRequestSingleConditionTypeCommand: 'SET' 'REQUEST_CONDITION_TYPE' 'TO' requestValueConditionTypes;
-setRequestMultipleConditionTypeCommand: 'SET' 'REQUEST_CONDITION_TYPE' 'TO' requestCompositeConditionTypes;
-
-setRequestBodyConditionTypeCommand: 'SET' 'REQUEST_BODY_CONDITION_TYPE' 'TO';
 
 
 condition:
     'ADD' 'CONDITION' '{'
-        (simpleCondition | compositeCondition | negatedSimpleCondition | negatedCompositeCondition)+
+        (simpleCondition | compositeCondition | negatedSimpleCondition | negatedCompositeCondition)
     '}';
 
 simpleCondition:
@@ -289,7 +265,7 @@ simpleCondition:
     )
     |
     (
-        'SET' 'REQUEST_CONDITION_TYPE' 'TO' isPresentConditionType
+        'SET' 'REQUEST_CONDITION_TYPE' 'TO' isPresentConditionTypes
     );
 
 compositeCondition:
@@ -313,52 +289,104 @@ negatedCompositeCondition:
 
 
 httpMethodTypes: (
-     'GET' | 'POST' | 'PUT' | 'DELETE'| 'PATCH'| 'OPTIONS'| 'TRACE'| 'ANY'
+       'GET'
+     | 'POST'
+     | 'PUT'
+     | 'DELETE'
+     | 'PATCH'
+     | 'OPTIONS'
+     | 'TRACE'
+     | 'ANY'
 );
 
 urlMatchTypes: (
-     'PATH' | 'PATH_AND_QUERY' | 'PATH_AND_QUERY_REGEX' | 'PATH_REGEX'| 'PATH_TEMPLATE'| 'ANY_URL'
+       'PATH'
+     | 'PATH_AND_QUERY'
+     | 'PATH_AND_QUERY_REGEX'
+     | 'PATH_REGEX'
+     | 'PATH_TEMPLATE'
+     | 'ANY_URL'
 );
 
+requestValueConditionTypes:
+     'EQUALS'
+    | 'MATCHES_REGEX'
+    | 'CONTAINS'
+    | 'MATCHES_JSON_SCHEMA'
+    | 'EQUALS_XML'
+    | 'MATCHES_XPATH'
+    | 'EQUALS_JSON'
+    | 'MATCHES_JSON_PATH'
+    | 'BEFORE'
+    | 'AFTER'
+    | 'EQUALS_DATE_TIME'
+    ;
 
+genericConditionTypes:
+      'EQUALS'
+    | 'MATCHES_REGEX'
+    | 'CONTAINS'
+    | 'MATCHES_JSON_SCHEMA'
+    ;
 
-
-
-
-requestValueConditionTypes: (
-    'EQUALS' | 'MATCHES_REGEX' | 'CONTAINS' | 'MATCHES_JSON_SCHEMA' | 'EQUALS_XML' | 'MATCHES_XPATH' | 'EQUALS_JSON' |
-    'MATCHES_JSON_PATH'  | 'BEFORE' | 'AFTER' | 'EQUALS_DATE_TIME'
-);
-
-genericConditionTypes: 'EQUALS' | 'MATCHES_REGEX' | 'CONTAINS' | 'MATCHES_JSON_SCHEMA';
-
-requestCompositeConditionTypes: (
-     'OR' | 'AND' | 'VALUES_INCLUDE' | 'VALUES_ARE_EXACTLY'
-);
+requestCompositeConditionTypes:
+       'OR'
+     | 'AND'
+     | 'VALUES_INCLUDE'
+     | 'VALUES_ARE_EXACTLY'
+     ;
 
 matchesJsonPathAndXPathConditionTypes:
-     'EQUALS' | 'MATCHES_REGEX' | 'CONTAINS' | 'BEFORE' | 'AFTER' | 'EQUALS_DATE_TIME';
+       'EQUALS'
+     | 'MATCHES_REGEX'
+     | 'CONTAINS'
+     | 'BEFORE'
+     | 'AFTER'
+     | 'EQUALS_DATE_TIME'
+     ;
 
-isPresentConditionType: 'IS_PRESENT';
+isPresentConditionTypes: 'IS_PRESENT';
+
+responseBodyTypes:
+    'JSON'
+    | 'XML'
+    | 'HTML'
+    | 'TEXT'
+    | 'BASE64'
+    ;
 
 
 
+setNameCommand: 'SET' 'NAME' 'TO' STRING;
+setValueCommand: 'SET' 'VALUE' 'TO' (STRING | NUMBER);
 
+setEndpointDescriptionCommand: 'SET' 'DESCRIPTION' 'TO' STRING;
+setHttpMethodCommand: 'SET' 'METHOD' 'TO' httpMethodTypes;
+setUrlMatchTypeCommand: 'SET' 'URL_MATCH_TYPE' 'TO' urlMatchTypes;
+setPathCommand: 'SET' 'REQUEST_PATH' 'TO' STRING;
+setPriorityCommand: 'SET' 'PRIORITY' 'TO' NUMBER; //ТУТ ПЕРЕВІРКА НА НЕВІДЄМНЕ В КОДІ
 
+setResponseStatusCodeCommand: 'SET' 'STATUS_CODE' 'TO' NUMBER;
 
+setRequestSingleConditionTypeCommand: 'SET' 'REQUEST_CONDITION_TYPE' 'TO' requestValueConditionTypes;
+setRequestMultipleConditionTypeCommand: 'SET' 'REQUEST_CONDITION_TYPE' 'TO' requestCompositeConditionTypes;
+setRequestBodyConditionTypeCommand: 'SET' 'REQUEST_BODY_CONDITION_TYPE' 'TO';
+setUrlCommand: 'SET' 'URL' 'TO' STRING;
 
+setFaultTypeCommand: 'SET' 'FAULT_TYPE' 'TO' faultTypes;
+
+setHostnameRewritingCommand: 'SET' 'HOSTNAME_REWRITING' 'TO' BOOLEAN;
+setTemplatingCommand: 'SET' 'TEMPLATING' 'TO' BOOLEAN;
+
+setResponseBodyTypeCommand: 'SET' 'BODY_TYPE' 'TO' responseBodyTypes;
+
+setDynamicResponseTemplatingCommand: 'SET' 'DYNAMIC_RESPONSE_TEMPLATING' 'TO' BOOLEAN;
 
 
 
 STRING: '"' ~["]* '"';
-//INT: '-'? [0-9]+;
-//PRIORITY_VALUE: [1-9][0-9]? | '100';
 NUMBER: '-'? [0-9]+ ('.' [0-9]+)?;
-
 BOOLEAN: 'true' | 'false' | 'TRUE' | 'FALSE';
-
 LINE_COMMENT : '//' ~[\r\n]* -> skip ;
 BLOCK_COMMENT : '/*' .*? '*/' -> skip ;
-
-
 WS: [ \t\r\n]+ -> skip;
