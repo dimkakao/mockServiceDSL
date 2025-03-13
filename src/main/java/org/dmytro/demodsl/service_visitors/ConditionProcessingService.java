@@ -12,12 +12,12 @@ import org.dmytro.demodsl.entity.PresenceCondition;
 import org.dmytro.demodsl.entity.SimpleCondition;
 import org.dmytro.demodsl.parser.DmytroMockDSLParser;
 import org.dmytro.demodsl.util.ExceptionUtils;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ConditionProcessingService {
@@ -110,9 +110,6 @@ public class ConditionProcessingService {
             throw ExceptionUtils.illegalArgument("Attempt to process empty composite condition.");
         }
 
-        DmytroMockDSLParser.SetRequestMultipleConditionTypeCommandContext setRequestMultipleConditionTypeCommandContext =
-                compositeConditionContext.setRequestMultipleConditionTypeCommand();
-
         String requestConditionTypeStr =
                 Optional.ofNullable(compositeConditionContext.setRequestMultipleConditionTypeCommand())
                         .map(DmytroMockDSLParser.SetRequestMultipleConditionTypeCommandContext::requestCompositeConditionTypes)
@@ -125,12 +122,12 @@ public class ConditionProcessingService {
         List<DmytroMockDSLParser.ConditionContext> conditionContexts = compositeConditionContext.condition();
 
         if (ObjectUtils.isEmpty(conditionContexts)) {
-            throw ExceptionUtils.illegalArgument("Attempt to process composite condition without subconditions.");
+            throw ExceptionUtils.illegalArgument("Attempt to process composite condition without sub conditions.");
         }
 
         List<Condition> subConditions = conditionContexts.stream()
                 .map(this::processConditionContext)
-                .collect(Collectors.toList());
+                .toList();
 
         return new CompositeCondition(conditionType, subConditions);
     }
@@ -149,10 +146,10 @@ public class ConditionProcessingService {
         return negateCondition(processedCompositeConditionOptional);
     }
 
-    private Condition negateCondition(Optional<Condition> conditionOptional) {
+    @NonNull private Condition negateCondition(Optional<Condition> conditionOptional) {
         return conditionOptional.map(condition -> {
             condition.setNegated(true);
             return condition;
-        }).orElse(null);
+        }).orElseThrow(ExceptionUtils.illegalArgumentSupplier("Attempt to negate empty condition."));
     }
 }

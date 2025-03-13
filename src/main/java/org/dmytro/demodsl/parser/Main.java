@@ -95,12 +95,10 @@ public class Main {
                                 
                         FORM_PARAMS {
                             ADD FORM_PARAM_RULE {
-                                SET NAME TO "USER_XXX"
+                                SET NAME TO "FormMaParaMa"
                                 ADD CONDITION {
-                                    NOT (
-                                        SET REQUEST_CONDITION_TYPE TO MATCHES_REGEX
-                                        SET VALUE TO "^[0-9]+$"
-                                    )
+                                    SET REQUEST_CONDITION_TYPE TO EQUALS
+                                    SET VALUE TO "7777"
                                 }
                             }
                         }

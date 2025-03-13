@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 
 @Setter
-public abstract class RequestPropertyRule <T extends RequestProperty>{
+public abstract class RequestPropertyRule<T extends RequestProperty> {
 
     protected DmytroMockDSLParser.SetNameCommandContext setNameCommandContext;
 
@@ -26,6 +26,6 @@ public abstract class RequestPropertyRule <T extends RequestProperty>{
 
     public abstract DmytroMockDSLParser.ConditionContext getCondition();
 
-    public abstract  BiFunction<String, Condition, T> requestPropertyAggregator();
+    public abstract BiFunction<String, Condition, T> requestPropertyAggregator();
 
 }
