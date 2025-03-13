@@ -2,9 +2,9 @@ package org.dmytro.demodsl.entity.request_property;
 
 import org.dmytro.demodsl.entity.Condition;
 
-public class RequestCookies extends RequestProperty {
+public class RequestCookie extends RequestProperty {
 
-    public RequestCookies(String name, Condition condition) {
+    public RequestCookie(String name, Condition condition) {
         super(name, condition);
     }
 

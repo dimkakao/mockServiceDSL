@@ -2,9 +2,9 @@ package org.dmytro.demodsl.entity.request_property;
 
 import org.dmytro.demodsl.entity.Condition;
 
-public class RequestHeaders extends RequestProperty {
+public class RequestHeader extends RequestProperty {
 
-    public RequestHeaders(String name, Condition condition) {
+    public RequestHeader(String name, Condition condition) {
         super(name, condition);
     }
 

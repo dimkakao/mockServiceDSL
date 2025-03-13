@@ -71,11 +71,11 @@ public class Main {
                                 
                         HEADERS {
                             ADD HEADER_RULE {
-                                SET NAME TO "USER_XXX"
+                                SET NAME TO "Authorization"
                                 ADD CONDITION {
                                     NOT (
-                                        SET REQUEST_CONDITION_TYPE TO MATCHES_REGEX
-                                        SET VALUE TO "^[0-9]+$"
+                                        SET REQUEST_CONDITION_TYPE TO EQUALS
+                                        SET VALUE TO "Bearer 123"
                                     )
                                 }
                             }

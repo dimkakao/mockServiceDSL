@@ -2,9 +2,9 @@ package org.dmytro.demodsl.entity.request_property;
 
 import org.dmytro.demodsl.entity.Condition;
 
-public class RequestFormParams extends RequestProperty {
+public class RequestFormParam extends RequestProperty {
 
-    public RequestFormParams(String name, Condition condition) {
+    public RequestFormParam(String name, Condition condition) {
         super(name, condition);
     }
 

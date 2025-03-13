@@ -8,15 +8,19 @@ import org.dmytro.demodsl.custom_emun.HttpRequestMethod;
 import org.dmytro.demodsl.custom_emun.UrlMatchingType;
 import org.dmytro.demodsl.entity.Condition;
 import org.dmytro.demodsl.entity.MockEndpointRequestDefinition;
+import org.dmytro.demodsl.entity.request_property.RequestHeader;
 import org.dmytro.demodsl.entity.request_property.RequestProperty;
 import org.dmytro.demodsl.entity.request_property.RequestQueryParam;
 import org.dmytro.demodsl.parser.DmytroMockDSLParser;
+import org.dmytro.demodsl.util.ExceptionUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
-import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -53,30 +57,30 @@ public class MockEndpointRequestDefinitionProcessingService {
                     mockEndpointRequestDefinition.setPriority(priority);
                 });
 
+        List<RequestQueryParam> requestQueryParams
+                = requestPropertyProcessorService.mapRequestQueryParamsContextToListOfRequestQueryParam(requestDefinitionContext.requestQueryParams());
 
-        Optional.ofNullable(requestDefinitionContext.requestQueryParams())
-                .map(DmytroMockDSLParser.RequestQueryParamsContext::requestQueryParamRule)
-                .ifPresent(requestQueryParamRuleContexts -> {
-                    List<RequestQueryParam> requestQueryParams = requestQueryParamRuleContexts.stream()
-                            .map(requestQueryParamRuleContext -> {
-                                return processRequestPropertyRuleContext(
-                                        requestQueryParamRuleContext.setNameCommand().STRING().getText(),
-                                        requestQueryParamRuleContext.condition(),
-                                        RequestQueryParam::new
-                                );
-//                                String propertyName = requestQueryParamRuleContext.setNameCommand().STRING().getText();
-//                                System.out.println("propertyName: " + propertyName);
-//                                RequestQueryParam requestQueryParam = requestPropertyProcessorService.processRequestProperty(
-//                                        propertyName,
-//                                        requestQueryParamRuleContext::condition,
-//                                        RequestQueryParam::new
-//                                );
-//                                System.out.println("requestQueryParam: " + requestQueryParam);
-//                                return requestQueryParam;
-                            })
-                            .toList();
-                    mockEndpointRequestDefinition.setRequestQueryParams(requestQueryParams);
-                });
+        mockEndpointRequestDefinition.setRequestQueryParams(requestQueryParams);
+
+        List<RequestHeader> requestHeaders
+                = requestPropertyProcessorService.mapRequestHeadersContextToListOfRequestHeader(requestDefinitionContext.requestHeaders());
+
+        mockEndpointRequestDefinition.setRequestHeaders(requestHeaders);
+
+//        Optional.ofNullable(requestDefinitionContext.requestQueryParams())
+//                .map(DmytroMockDSLParser.RequestQueryParamsContext::requestQueryParamRule)
+//                .map(this::mapRequestQueryParamsContextToListOfRequestQueryParam)
+//                {
+//                    return requestQueryParamRuleContexts.stream()
+//                            .map(requestQueryParamRuleContext -> mapRequestQueryParamRuleContextToRequestQueryParams(requestQueryParamRuleContext))
+//                                    processRequestPropertyRuleContext(
+//                                            requestQueryParamRuleContext.setNameCommand().STRING().getText(),
+//                                            requestQueryParamRuleContext.condition(),
+//                                            RequestQueryParam::new
+//                                    ))
+//                            .toList();
+//                })
+//                .ifPresent(mockEndpointRequestDefinition::setRequestQueryParams);
 
         return mockEndpointRequestDefinition;
 
@@ -87,21 +91,5 @@ public class MockEndpointRequestDefinitionProcessingService {
 //        mockEndpointRequestDefinition.setResponseRule(new ResponseRuleVisitor().visitResponseRule(context.responseRule()));
 //        return mockEndpointRequestDefinition;
     }
-
-    private <T extends RequestProperty> T processRequestPropertyRuleContext(
-            @NotBlank String propertyName,
-            @NotNull DmytroMockDSLParser.ConditionContext conditionContext,
-            BiFunction<String, Condition, T> requestPropertyAggregator
-    ) {
-        System.out.println("propertyName: " + propertyName);
-        T requestProperty = requestPropertyProcessorService.processRequestProperty(
-                propertyName,
-                conditionContext,
-                requestPropertyAggregator
-        );
-        System.out.println("RequestProperty: " + requestProperty);
-        return requestProperty;
-    }
-
 
 }
