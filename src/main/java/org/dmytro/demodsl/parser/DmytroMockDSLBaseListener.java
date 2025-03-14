@@ -64,42 +64,6 @@ public class DmytroMockDSLBaseListener implements DmytroMockDSLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSetResponseBodyTypeCommand(DmytroMockDSLParser.SetResponseBodyTypeCommandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSetResponseBodyTypeCommand(DmytroMockDSLParser.SetResponseBodyTypeCommandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSetDynamicResponseTemplatingCommand(DmytroMockDSLParser.SetDynamicResponseTemplatingCommandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSetDynamicResponseTemplatingCommand(DmytroMockDSLParser.SetDynamicResponseTemplatingCommandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSetResponseStatusCodeCommand(DmytroMockDSLParser.SetResponseStatusCodeCommandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSetResponseStatusCodeCommand(DmytroMockDSLParser.SetResponseStatusCodeCommandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterFaultResponseDefinition(DmytroMockDSLParser.FaultResponseDefinitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -107,18 +71,6 @@ public class DmytroMockDSLBaseListener implements DmytroMockDSLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFaultResponseDefinition(DmytroMockDSLParser.FaultResponseDefinitionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSetFaultTypeCommand(DmytroMockDSLParser.SetFaultTypeCommandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSetFaultTypeCommand(DmytroMockDSLParser.SetFaultTypeCommandContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -143,30 +95,6 @@ public class DmytroMockDSLBaseListener implements DmytroMockDSLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitProxyResponseDefinition(DmytroMockDSLParser.ProxyResponseDefinitionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSetHostnameRewritingCommand(DmytroMockDSLParser.SetHostnameRewritingCommandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSetHostnameRewritingCommand(DmytroMockDSLParser.SetHostnameRewritingCommandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSetTemplatingCommand(DmytroMockDSLParser.SetTemplatingCommandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSetTemplatingCommand(DmytroMockDSLParser.SetTemplatingCommandContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -712,6 +640,30 @@ public class DmytroMockDSLBaseListener implements DmytroMockDSLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSetNameCommand(DmytroMockDSLParser.SetNameCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSetNameCommand(DmytroMockDSLParser.SetNameCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSetValueCommand(DmytroMockDSLParser.SetValueCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSetValueCommand(DmytroMockDSLParser.SetValueCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSetEndpointDescriptionCommand(DmytroMockDSLParser.SetEndpointDescriptionCommandContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -772,25 +724,13 @@ public class DmytroMockDSLBaseListener implements DmytroMockDSLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSetNameCommand(DmytroMockDSLParser.SetNameCommandContext ctx) { }
+	@Override public void enterSetResponseStatusCodeCommand(DmytroMockDSLParser.SetResponseStatusCodeCommandContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSetNameCommand(DmytroMockDSLParser.SetNameCommandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSetValueCommand(DmytroMockDSLParser.SetValueCommandContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSetValueCommand(DmytroMockDSLParser.SetValueCommandContext ctx) { }
+	@Override public void exitSetResponseStatusCodeCommand(DmytroMockDSLParser.SetResponseStatusCodeCommandContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -839,6 +779,102 @@ public class DmytroMockDSLBaseListener implements DmytroMockDSLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSetUrlCommand(DmytroMockDSLParser.SetUrlCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSetFaultTypeCommand(DmytroMockDSLParser.SetFaultTypeCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSetFaultTypeCommand(DmytroMockDSLParser.SetFaultTypeCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSetHostnameRewritingCommand(DmytroMockDSLParser.SetHostnameRewritingCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSetHostnameRewritingCommand(DmytroMockDSLParser.SetHostnameRewritingCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSetTemplatingCommand(DmytroMockDSLParser.SetTemplatingCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSetTemplatingCommand(DmytroMockDSLParser.SetTemplatingCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSetResponseBodyTypeCommand(DmytroMockDSLParser.SetResponseBodyTypeCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSetResponseBodyTypeCommand(DmytroMockDSLParser.SetResponseBodyTypeCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSetDynamicResponseTemplatingCommand(DmytroMockDSLParser.SetDynamicResponseTemplatingCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSetDynamicResponseTemplatingCommand(DmytroMockDSLParser.SetDynamicResponseTemplatingCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSetIgnoreArrayOrderCommand(DmytroMockDSLParser.SetIgnoreArrayOrderCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSetIgnoreArrayOrderCommand(DmytroMockDSLParser.SetIgnoreArrayOrderCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSetIgnorExtraElementsCommand(DmytroMockDSLParser.SetIgnorExtraElementsCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSetIgnorExtraElementsCommand(DmytroMockDSLParser.SetIgnorExtraElementsCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSetEnableXmlUnitPlaceholdersCommand(DmytroMockDSLParser.SetEnableXmlUnitPlaceholdersCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSetEnableXmlUnitPlaceholdersCommand(DmytroMockDSLParser.SetEnableXmlUnitPlaceholdersCommandContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

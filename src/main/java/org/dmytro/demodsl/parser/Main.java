@@ -358,7 +358,6 @@ public class Main {
                                 
                 """;
 
-
         DmytroMockDSLLexer lexer = new DmytroMockDSLLexer(CharStreams.fromString(query));
         lexer.removeErrorListeners();
         lexer.addErrorListener(new SyntaxErrorListener());
@@ -369,8 +368,6 @@ public class Main {
         parser.removeErrorListeners();
         parser.addErrorListener(new SyntaxErrorListener());
 
-
-
         // Викликаємо головне правило з граматики
         DmytroMockDSLParser.EndpointDefinitionRequestContext endpointDefinitionRequestContext = parser.endpointDefinitionRequest();
 
@@ -380,45 +377,5 @@ public class Main {
         MockEndpointRequestDefinition mockEndpointRequestDefinition = mockEndpointRequestDefinitionProcessingService.visitMockEndpointRequestDefinition(requestDefinitionContext);
 
         System.out.println(mockEndpointRequestDefinition);
-
-
-//        DmytroMockDSLParser.RequestQueryParamsContext requestQueryParamsContext = requestDefinitionContext.requestQueryParams();
-//
-//        List<DmytroMockDSLParser.RequestQueryParamRuleContext> requestQueryParamRuleContexts = requestQueryParamsContext.requestQueryParamRule();
-//
-//        requestQueryParamRuleContexts.forEach(requestQueryParamRuleContext -> {
-//            DmytroMockDSLParser.SetNameCommandContext setNameContext = requestQueryParamRuleContext.setNameCommand();
-//            System.out.println("Set name :" + setNameContext.STRING().getText());
-//            DmytroMockDSLParser.ConditionContext condition = requestQueryParamRuleContext.condition();
-//            processConditionContext(condition).forEach(System.out::println);
-//
-//        });
     }
-
-//    private static void processConditionContextOld(QueryParamsParser.ConditionContext conditionContext) {
-//
-//        int childCount = conditionContext.getChildCount();
-//        System.out.println("Child count: " + childCount);
-//
-//        List<QueryParamsParser.SimpleConditionContext> simpleConditionContexts = conditionContext.simpleCondition();
-//        List<QueryParamsParser.CompositeConditionContext> compositeConditionContexts = conditionContext.compositeCondition();
-//        List<QueryParamsParser.NegatedSimpleConditionContext> negatedSimpleConditionContexts = conditionContext.negatedSimpleCondition();
-//        List<QueryParamsParser.NegatedCompositeConditionContext> negatedCompositeConditionContexts = conditionContext.negatedCompositeCondition();
-//
-//        simpleConditionContexts.forEach(simpleConditionContext -> {
-//            System.out.println("Simple condition: " + simpleConditionContext.getText());
-//        });
-//
-//        compositeConditionContexts.forEach(compositeConditionContext -> {
-//            System.out.println("Composite condition: " + compositeConditionContext.getText());
-//        });
-//
-//        negatedSimpleConditionContexts.forEach(negatedSimpleConditionContext -> {
-//            System.out.println("Negated simple condition: " + negatedSimpleConditionContext.getText());
-//        });
-//
-//        negatedCompositeConditionContexts.forEach(negatedCompositeConditionContext -> {
-//            System.out.println("Negated composite condition: " + negatedCompositeConditionContext.getText());
-//        });
-//    }
 }

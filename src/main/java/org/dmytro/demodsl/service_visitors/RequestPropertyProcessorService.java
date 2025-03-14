@@ -3,17 +3,19 @@ package org.dmytro.demodsl.service_visitors;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.dmytro.demodsl.adapter.RequestPropertyDefinition;
 import org.dmytro.demodsl.adapter.impl.RequestCookiesDefinition;
 import org.dmytro.demodsl.adapter.impl.RequestFormParamsDefinition;
 import org.dmytro.demodsl.adapter.impl.RequestHeadersDefinition;
 import org.dmytro.demodsl.adapter.impl.RequestQueryParamsDefinition;
 import org.dmytro.demodsl.entity.Condition;
+import org.dmytro.demodsl.entity.MockEndpointRequestDefinition;
 import org.dmytro.demodsl.entity.request_property.*;
 import org.dmytro.demodsl.parser.DmytroMockDSLParser;
+import org.dmytro.demodsl.util.ExceptionUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
@@ -23,6 +25,39 @@ import java.util.function.BiFunction;
 public class RequestPropertyProcessorService {
 
     private static final ConditionProcessingService conditionProcessingService = new ConditionProcessingService();
+
+    public void processRequestProperties(
+            DmytroMockDSLParser.RequestDefinitionContext requestDefinitionContext,
+            MockEndpointRequestDefinition mockEndpointRequestDefinition
+    ) {
+        if (ObjectUtils.anyNull(requestDefinitionContext, mockEndpointRequestDefinition)) {
+            throw ExceptionUtils.illegalArgument("RequestDefinitionContext and MockEndpointRequestDefinition must not be null");
+        }
+
+        Optional.ofNullable(requestDefinitionContext.requestQueryParams())
+                .ifPresent(requestQueryParamsContext -> {
+                    List<RequestQueryParam> requestQueryParams = mapRequestQueryParamsContextToListOfRequestQueryParam(requestQueryParamsContext);
+                    mockEndpointRequestDefinition.setRequestQueryParams(requestQueryParams);
+                });
+
+        Optional.ofNullable(requestDefinitionContext.requestHeaders())
+                .ifPresent(requestHeadersContext -> {
+                    List<RequestHeader> requestHeaders = mapRequestHeadersContextToListOfRequestHeader(requestHeadersContext);
+                    mockEndpointRequestDefinition.setRequestHeaders(requestHeaders);
+                });
+
+        Optional.ofNullable(requestDefinitionContext.requestCookies())
+                .ifPresent(requestCookiesContext -> {
+                    List<RequestCookie> requestCookies = mapRequestCookiesContextToListOfRequestCookie(requestCookiesContext);
+                    mockEndpointRequestDefinition.setRequestCookies(requestCookies);
+                });
+
+        Optional.ofNullable(requestDefinitionContext.requestFormParams())
+                .ifPresent(requestFormParamsContext -> {
+                    List<RequestFormParam> requestFormParams = mapRequestFormParamsContextToListOfRequestFormParam(requestFormParamsContext);
+                    mockEndpointRequestDefinition.setRequestFormParams(requestFormParams);
+                });
+    }
 
     public List<RequestQueryParam> mapRequestQueryParamsContextToListOfRequestQueryParam(
             @NotNull DmytroMockDSLParser.RequestQueryParamsContext requestQueryParamsContext
@@ -59,7 +94,9 @@ public class RequestPropertyProcessorService {
                 .stream()
                 .flatMap(List::stream)
                 .map(requestPropertyRule -> {
-                    String name = requestPropertyRule.getName();
+                    String name = requestPropertyRule.getName()
+                            .replaceFirst("^\"", "")
+                            .replaceFirst("\"$", "");
                     DmytroMockDSLParser.ConditionContext conditionContext = requestPropertyRule.getCondition();
                     return processRequestPropertyRuleContext(name, conditionContext, requestPropertyRule.requestPropertyAggregator());
                 })
@@ -78,9 +115,6 @@ public class RequestPropertyProcessorService {
         log.info("RequestProperty: " + requestProperty);
         return requestProperty;
     }
-
-
-
 }
 
 

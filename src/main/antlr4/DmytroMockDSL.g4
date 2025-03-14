@@ -209,13 +209,16 @@ valueOnlyRequestBodyRuleCondition:
 equalsXmlRequestBodyRuleCondition:
    setRequestBodyConditionTypeCommand 'EQUALS_XML'
    setValueCommand
-   ('SET' 'ENABLE_XMLUNIT_PLACEHOLDERS' 'TO' BOOLEAN)?;
+   setEnableXmlUnitPlaceholdersCommand?
+   ;
+
 
 equalsJsonRequestBodyRuleCondition:
    setRequestBodyConditionTypeCommand 'EQUALS_JSON'
    setValueCommand
-   ('SET' 'IGNORE_ARRAY_ORDER' 'TO' BOOLEAN)?
-   ('SET' 'IGNORE_EXTRA_ELEMENTS' 'TO' BOOLEAN)?;
+   setIgnoreArrayOrderCommand?
+   setIgnorExtraElementsCommand?
+   ;
 
 isPresentRequestBodyRuleCondition:
   setRequestBodyConditionTypeCommand isPresentConditionTypes;
@@ -381,6 +384,12 @@ setTemplatingCommand: 'SET' 'TEMPLATING' 'TO' BOOLEAN;
 setResponseBodyTypeCommand: 'SET' 'BODY_TYPE' 'TO' responseBodyTypes;
 
 setDynamicResponseTemplatingCommand: 'SET' 'DYNAMIC_RESPONSE_TEMPLATING' 'TO' BOOLEAN;
+
+
+setIgnoreArrayOrderCommand: 'SET' 'IGNORE_ARRAY_ORDER' 'TO' BOOLEAN;
+setIgnorExtraElementsCommand: 'SET' 'IGNORE_EXTRA_ELEMENTS' 'TO' BOOLEAN;
+
+setEnableXmlUnitPlaceholdersCommand: 'SET' 'ENABLE_XMLUNIT_PLACEHOLDERS' 'TO' BOOLEAN;
 
 
 

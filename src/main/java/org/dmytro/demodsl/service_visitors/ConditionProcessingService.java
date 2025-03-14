@@ -92,6 +92,7 @@ public class ConditionProcessingService {
         String propertyValue = Optional.ofNullable(setValueCommandContext)
                 .map(DmytroMockDSLParser.SetValueCommandContext::STRING)
                 .map(ParseTree::getText)
+                .map(value -> value.replaceFirst("^\"", "").replaceFirst("\"$", ""))
                 .orElseThrow(ExceptionUtils.illegalArgumentSupplier("Attempt to process simple condition without propertyValue."));
 
         return new SimpleCondition(conditionType, propertyValue);
@@ -146,7 +147,8 @@ public class ConditionProcessingService {
         return negateCondition(processedCompositeConditionOptional);
     }
 
-    @NonNull private Condition negateCondition(Optional<Condition> conditionOptional) {
+    @NonNull
+    private Condition negateCondition(Optional<Condition> conditionOptional) {
         return conditionOptional.map(condition -> {
             condition.setNegated(true);
             return condition;

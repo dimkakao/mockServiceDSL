@@ -47,36 +47,6 @@ public interface DmytroMockDSLListener extends ParseTreeListener {
 	 */
 	void exitDirectResponseDefinition(DmytroMockDSLParser.DirectResponseDefinitionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setResponseBodyTypeCommand}.
-	 * @param ctx the parse tree
-	 */
-	void enterSetResponseBodyTypeCommand(DmytroMockDSLParser.SetResponseBodyTypeCommandContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setResponseBodyTypeCommand}.
-	 * @param ctx the parse tree
-	 */
-	void exitSetResponseBodyTypeCommand(DmytroMockDSLParser.SetResponseBodyTypeCommandContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setDynamicResponseTemplatingCommand}.
-	 * @param ctx the parse tree
-	 */
-	void enterSetDynamicResponseTemplatingCommand(DmytroMockDSLParser.SetDynamicResponseTemplatingCommandContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setDynamicResponseTemplatingCommand}.
-	 * @param ctx the parse tree
-	 */
-	void exitSetDynamicResponseTemplatingCommand(DmytroMockDSLParser.SetDynamicResponseTemplatingCommandContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setResponseStatusCodeCommand}.
-	 * @param ctx the parse tree
-	 */
-	void enterSetResponseStatusCodeCommand(DmytroMockDSLParser.SetResponseStatusCodeCommandContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setResponseStatusCodeCommand}.
-	 * @param ctx the parse tree
-	 */
-	void exitSetResponseStatusCodeCommand(DmytroMockDSLParser.SetResponseStatusCodeCommandContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link DmytroMockDSLParser#faultResponseDefinition}.
 	 * @param ctx the parse tree
 	 */
@@ -86,16 +56,6 @@ public interface DmytroMockDSLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFaultResponseDefinition(DmytroMockDSLParser.FaultResponseDefinitionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setFaultTypeCommand}.
-	 * @param ctx the parse tree
-	 */
-	void enterSetFaultTypeCommand(DmytroMockDSLParser.SetFaultTypeCommandContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setFaultTypeCommand}.
-	 * @param ctx the parse tree
-	 */
-	void exitSetFaultTypeCommand(DmytroMockDSLParser.SetFaultTypeCommandContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DmytroMockDSLParser#faultTypes}.
 	 * @param ctx the parse tree
@@ -116,26 +76,6 @@ public interface DmytroMockDSLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitProxyResponseDefinition(DmytroMockDSLParser.ProxyResponseDefinitionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setHostnameRewritingCommand}.
-	 * @param ctx the parse tree
-	 */
-	void enterSetHostnameRewritingCommand(DmytroMockDSLParser.SetHostnameRewritingCommandContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setHostnameRewritingCommand}.
-	 * @param ctx the parse tree
-	 */
-	void exitSetHostnameRewritingCommand(DmytroMockDSLParser.SetHostnameRewritingCommandContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setTemplatingCommand}.
-	 * @param ctx the parse tree
-	 */
-	void enterSetTemplatingCommand(DmytroMockDSLParser.SetTemplatingCommandContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setTemplatingCommand}.
-	 * @param ctx the parse tree
-	 */
-	void exitSetTemplatingCommand(DmytroMockDSLParser.SetTemplatingCommandContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DmytroMockDSLParser#responseDelay}.
 	 * @param ctx the parse tree
@@ -587,6 +527,26 @@ public interface DmytroMockDSLListener extends ParseTreeListener {
 	 */
 	void exitResponseBodyTypes(DmytroMockDSLParser.ResponseBodyTypesContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setNameCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterSetNameCommand(DmytroMockDSLParser.SetNameCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setNameCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitSetNameCommand(DmytroMockDSLParser.SetNameCommandContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setValueCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterSetValueCommand(DmytroMockDSLParser.SetValueCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setValueCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitSetValueCommand(DmytroMockDSLParser.SetValueCommandContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setEndpointDescriptionCommand}.
 	 * @param ctx the parse tree
 	 */
@@ -637,25 +597,15 @@ public interface DmytroMockDSLListener extends ParseTreeListener {
 	 */
 	void exitSetPriorityCommand(DmytroMockDSLParser.SetPriorityCommandContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setNameCommand}.
+	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setResponseStatusCodeCommand}.
 	 * @param ctx the parse tree
 	 */
-	void enterSetNameCommand(DmytroMockDSLParser.SetNameCommandContext ctx);
+	void enterSetResponseStatusCodeCommand(DmytroMockDSLParser.SetResponseStatusCodeCommandContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setNameCommand}.
+	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setResponseStatusCodeCommand}.
 	 * @param ctx the parse tree
 	 */
-	void exitSetNameCommand(DmytroMockDSLParser.SetNameCommandContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setValueCommand}.
-	 * @param ctx the parse tree
-	 */
-	void enterSetValueCommand(DmytroMockDSLParser.SetValueCommandContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setValueCommand}.
-	 * @param ctx the parse tree
-	 */
-	void exitSetValueCommand(DmytroMockDSLParser.SetValueCommandContext ctx);
+	void exitSetResponseStatusCodeCommand(DmytroMockDSLParser.SetResponseStatusCodeCommandContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setRequestSingleConditionTypeCommand}.
 	 * @param ctx the parse tree
@@ -696,4 +646,84 @@ public interface DmytroMockDSLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSetUrlCommand(DmytroMockDSLParser.SetUrlCommandContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setFaultTypeCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterSetFaultTypeCommand(DmytroMockDSLParser.SetFaultTypeCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setFaultTypeCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitSetFaultTypeCommand(DmytroMockDSLParser.SetFaultTypeCommandContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setHostnameRewritingCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterSetHostnameRewritingCommand(DmytroMockDSLParser.SetHostnameRewritingCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setHostnameRewritingCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitSetHostnameRewritingCommand(DmytroMockDSLParser.SetHostnameRewritingCommandContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setTemplatingCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterSetTemplatingCommand(DmytroMockDSLParser.SetTemplatingCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setTemplatingCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitSetTemplatingCommand(DmytroMockDSLParser.SetTemplatingCommandContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setResponseBodyTypeCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterSetResponseBodyTypeCommand(DmytroMockDSLParser.SetResponseBodyTypeCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setResponseBodyTypeCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitSetResponseBodyTypeCommand(DmytroMockDSLParser.SetResponseBodyTypeCommandContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setDynamicResponseTemplatingCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterSetDynamicResponseTemplatingCommand(DmytroMockDSLParser.SetDynamicResponseTemplatingCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setDynamicResponseTemplatingCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitSetDynamicResponseTemplatingCommand(DmytroMockDSLParser.SetDynamicResponseTemplatingCommandContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setIgnoreArrayOrderCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterSetIgnoreArrayOrderCommand(DmytroMockDSLParser.SetIgnoreArrayOrderCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setIgnoreArrayOrderCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitSetIgnoreArrayOrderCommand(DmytroMockDSLParser.SetIgnoreArrayOrderCommandContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setIgnorExtraElementsCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterSetIgnorExtraElementsCommand(DmytroMockDSLParser.SetIgnorExtraElementsCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setIgnorExtraElementsCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitSetIgnorExtraElementsCommand(DmytroMockDSLParser.SetIgnorExtraElementsCommandContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DmytroMockDSLParser#setEnableXmlUnitPlaceholdersCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterSetEnableXmlUnitPlaceholdersCommand(DmytroMockDSLParser.SetEnableXmlUnitPlaceholdersCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DmytroMockDSLParser#setEnableXmlUnitPlaceholdersCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitSetEnableXmlUnitPlaceholdersCommand(DmytroMockDSLParser.SetEnableXmlUnitPlaceholdersCommandContext ctx);
 }

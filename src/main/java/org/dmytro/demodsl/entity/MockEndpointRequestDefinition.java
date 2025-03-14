@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.dmytro.demodsl.custom_emun.HttpRequestMethod;
 import org.dmytro.demodsl.custom_emun.UrlMatchingType;
 import org.dmytro.demodsl.entity.request_body_rule.RequestBodyRule;
@@ -14,12 +13,12 @@ import org.dmytro.demodsl.entity.request_property.RequestCookie;
 import org.dmytro.demodsl.entity.request_property.RequestFormParam;
 import org.dmytro.demodsl.entity.request_property.RequestHeader;
 import org.dmytro.demodsl.entity.request_property.RequestQueryParam;
+import org.dmytro.demodsl.util.StringUtils;
 
 import java.util.List;
 
 @Getter
 @Setter
-@ToString
 public class MockEndpointRequestDefinition {
     @NotNull
     private HttpRequestMethod method;
@@ -33,7 +32,7 @@ public class MockEndpointRequestDefinition {
     @Max(100)
     private Long priority = 50L;
 
-    private List<RequestQueryParam>  requestQueryParams;
+    private List<RequestQueryParam> requestQueryParams;
     private List<RequestHeader> requestHeaders;
     private List<RequestCookie> requestCookies;
     private List<RequestFormParam> requestFormParams;
@@ -41,9 +40,27 @@ public class MockEndpointRequestDefinition {
     @NotNull
     private List<RequestBodyRule> requestBodyRules;
 
-//    @JsonDeserialize(using = HttpStatusDeserializer.class)
-//    private HttpStatus statusCode;
-//    private String response;
-//    @NotNull
-//    private RequestBodyValidationRule requestBodyValidationRule;
+    @Override
+    public String toString() {
+        return """
+                MockEndpointRequestDefinition{
+                    method=%s,
+                    urlMatchingType=%s,
+                    path='%s',
+                    priority=%d,
+                    requestQueryParams=%s,
+                    requestHeaders=%s,
+                    requestCookies=%s,
+                    requestFormParams=%s,
+                    requestBodyRules=%s
+                }
+                """.formatted(method, urlMatchingType, path, priority,
+                StringUtils.indent(requestQueryParams.toString()),
+                StringUtils.indent(requestHeaders.toString()),
+                StringUtils.indent(requestCookies.toString()),
+                StringUtils.indent(requestFormParams.toString()),
+                StringUtils.indent(requestBodyRules.toString()))
+                ;
+    }
+
 }
