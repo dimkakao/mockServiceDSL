@@ -5,7 +5,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dmytro.demodsl.entity.MockEndpointRequestDefinition;
-import org.dmytro.demodsl.service.MockServerService;
+import org.dmytro.demodsl.service_visitors.MockServerService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -27,11 +27,11 @@ public class MockServerController {
     private static final String WIREMOCK_SERVER_URL = "http://localhost:8081";
     private final MockServerService service;
 
-    @PostMapping("/define-endpoint")
-    public ResponseEntity<String> defineEndpoint(@Valid @RequestBody MockEndpointRequestDefinition mockEndpointRequestDefinition) {
-        service.defineEndpoint(mockEndpointRequestDefinition);
-        return ResponseEntity.ok("Endpoint defined");
-    }
+//    @PostMapping("/define-endpoint")
+//    public ResponseEntity<String> defineEndpoint(@Valid @RequestBody MockEndpointRequestDefinition mockEndpointRequestDefinition) {
+//        service.defineEndpoint(mockEndpointRequestDefinition);
+//        return ResponseEntity.ok("Endpoint defined");
+//    }
 
     @RequestMapping("**")
     public Mono<ResponseEntity<byte[]>> handleRequest(HttpServletRequest request) {

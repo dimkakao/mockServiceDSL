@@ -30,7 +30,7 @@ public class MockEndpointRequestDefinition {
 
     @Min(1)
     @Max(100)
-    private Long priority = 50L;
+    private Integer priority = 50;
 
     private List<RequestQueryParam> requestQueryParams;
     private List<RequestHeader> requestHeaders;
@@ -55,11 +55,11 @@ public class MockEndpointRequestDefinition {
                     requestBodyRules=%s
                 }
                 """.formatted(method, urlMatchingType, path, priority,
-                StringUtils.indent(requestQueryParams.toString()),
-                StringUtils.indent(requestHeaders.toString()),
-                StringUtils.indent(requestCookies.toString()),
-                StringUtils.indent(requestFormParams.toString()),
-                StringUtils.indent(requestBodyRules.toString()))
+                StringUtils.indent(requestQueryParams == null ? "not present" : requestQueryParams.toString()),
+                StringUtils.indent(requestHeaders == null ? "not present" :  requestHeaders.toString()),
+                StringUtils.indent(requestCookies == null ? "not present" : requestCookies.toString()),
+                StringUtils.indent(requestFormParams == null ? "not present" : requestFormParams.toString()),
+                StringUtils.indent(requestBodyRules == null ? "not present" : requestBodyRules.toString()))
                 ;
     }
 

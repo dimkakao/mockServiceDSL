@@ -3,7 +3,7 @@ package org.dmytro.demodsl.service_visitors;
 import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.commons.lang3.ObjectUtils;
-import org.dmytro.demodsl.custom_emun.condition_emun.CompositeLogicalConditionType;
+import org.dmytro.demodsl.custom_emun.condition_emun.CompositeConditionLogicalType;
 import org.dmytro.demodsl.custom_emun.condition_emun.PresenceLogicalConditionType;
 import org.dmytro.demodsl.custom_emun.condition_emun.SingleValueLogicalConditionType;
 import org.dmytro.demodsl.entity.CompositeCondition;
@@ -18,6 +18,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 @Service
 public class ConditionProcessingService {
@@ -118,7 +119,7 @@ public class ConditionProcessingService {
                         .filter(StringUtils::hasText)
                         .orElseThrow(ExceptionUtils.illegalArgumentSupplier(COMPOSITE_CONDITION_WITHOUT_TYPE_MESSAGE));
 
-        CompositeLogicalConditionType conditionType = CompositeLogicalConditionType.valueOf(requestConditionTypeStr);
+        CompositeConditionLogicalType conditionType = CompositeConditionLogicalType.valueOf(requestConditionTypeStr);
 
         List<DmytroMockDSLParser.ConditionContext> conditionContexts = compositeConditionContext.condition();
 
@@ -129,6 +130,19 @@ public class ConditionProcessingService {
         List<Condition> subConditions = conditionContexts.stream()
                 .map(this::processConditionContext)
                 .toList();
+
+        Function<CompositeConditionLogicalType, Boolean> isNestedValuesConditionType = type ->
+                type.equals(CompositeConditionLogicalType.VALUES_INCLUDE) ||
+                        type.equals(CompositeConditionLogicalType.VALUES_ARE_EXACTLY);
+
+        boolean hasNestedValuesCondition = subConditions.stream()
+                .filter(condition -> condition instanceof CompositeCondition)
+                .map(condition -> (CompositeCondition) condition)
+                .anyMatch(condition -> isNestedValuesConditionType.apply(condition.getRequestConditionType()));
+
+        if (Boolean.TRUE.equals(isNestedValuesConditionType.apply(conditionType)) && hasNestedValuesCondition) {
+            throw new IllegalArgumentException("Composite condition type " + conditionType + " is not supported for nested values.");
+        }
 
         return new CompositeCondition(conditionType, subConditions);
     }

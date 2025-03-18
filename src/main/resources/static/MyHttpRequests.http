@@ -1,0 +1,9 @@
+POST http://localhost:8085/api/users4?USER_XXX=xxx
+Authorization: Bearer 456
+Content-Type: application/x-www-form-urlencoded
+Cookie: USER_COOKIE=SomeValue
+
+
+USER_XXX=xxx
+
+

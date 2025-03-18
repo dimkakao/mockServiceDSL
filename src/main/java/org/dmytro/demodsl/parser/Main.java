@@ -19,7 +19,7 @@ public class Main {
                                 
                         SET URL_MATCH_TYPE TO PATH
                                 
-                        SET REQUEST_PATH TO "/api//users"
+                        SET REQUEST_PATH TO "/api/users"
                                 
                         SET PRIORITY TO 100
                                 

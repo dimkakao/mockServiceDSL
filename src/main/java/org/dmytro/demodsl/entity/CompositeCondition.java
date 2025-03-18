@@ -3,7 +3,7 @@ package org.dmytro.demodsl.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.dmytro.demodsl.custom_emun.condition_emun.CompositeLogicalConditionType;
+import org.dmytro.demodsl.custom_emun.condition_emun.CompositeConditionLogicalType;
 import org.dmytro.demodsl.util.StringUtils;
 
 import java.util.ArrayList;
@@ -15,14 +15,14 @@ import java.util.List;
 @NoArgsConstructor
 public class CompositeCondition extends Condition {
     private List<Condition> subConditions;
-    private CompositeLogicalConditionType requestConditionType;
+    private CompositeConditionLogicalType requestConditionType;
 
-    public CompositeCondition(CompositeLogicalConditionType requestConditionType) {
+    public CompositeCondition(CompositeConditionLogicalType requestConditionType) {
         this.requestConditionType = requestConditionType;
         this.subConditions = new ArrayList<>();
     }
 
-    public CompositeCondition(CompositeLogicalConditionType requestConditionType, List<Condition> subConditions) {
+    public CompositeCondition(CompositeConditionLogicalType requestConditionType, List<Condition> subConditions) {
         this.requestConditionType = requestConditionType;
         this.subConditions = subConditions;
     }
